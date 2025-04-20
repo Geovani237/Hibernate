@@ -14,7 +14,7 @@ public class ContatoApp {
         EntityManager em = Conexao.getEntityManager();
 
         //salvar(em);
-        //remover(em);
+        remover(em);
         //atualizar(em);
 
 
@@ -42,6 +42,18 @@ public class ContatoApp {
 
         em.getTransaction().begin();
         dao.atualizar(contato);
+        em.getTransaction().commit();
+    }
+
+    public static void remover(EntityManager em){
+
+        Contato contato = new Contato();
+        ContatoDao dao = new ContatoDao(em);
+
+        contato.setId(7L);
+
+        em.getTransaction().begin();
+        dao.remover(contato);
         em.getTransaction().commit();
     }
 }
