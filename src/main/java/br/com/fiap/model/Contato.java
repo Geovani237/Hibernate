@@ -1,7 +1,6 @@
 package br.com.fiap.model;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 
 @Entity
@@ -20,6 +19,18 @@ public class Contato {
     private String email;
     @Column(name = "data_nascimento")
     private LocalDate dataNascimento;
+
+    @ManyToOne
+    @JoinColumn(name = "tipoContato_id")
+    private TipoContato tipoContato;
+
+    public TipoContato getTipoContato() {
+        return tipoContato;
+    }
+
+    public void setTipoContato(TipoContato tipoContato) {
+        this.tipoContato = tipoContato;
+    }
 
     public Long getId() {
         return id;
@@ -51,5 +62,17 @@ public class Contato {
 
     public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
+    }
+
+
+
+    @Override
+    public String toString() {
+        return "Contato" +
+                "id = " + id +
+                ", nome = '" + nome + '\'' +
+                ", email = '" + email + '\'' +
+                ", dataNascimento = " + dataNascimento +
+                ", tipoContato=" + tipoContato;
     }
 }
